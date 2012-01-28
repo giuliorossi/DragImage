@@ -2,7 +2,7 @@ package dragimage.namespace;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
+
 
 
 public class DragImageActivity extends Activity {
@@ -10,7 +10,8 @@ public class DragImageActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View main = new View(DragImageActivity.this);
+        MyView main = new MyView(DragImageActivity.this);
         setContentView(main);
     }
 }
+

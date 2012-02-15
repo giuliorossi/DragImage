@@ -26,8 +26,8 @@ public class MyView extends View
 		opts.inJustDecodeBounds = true;
 		img = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
 		// 10) offset tramite 2 variabili d'istanza
-		offsetx = (img.getWidth())/2;
-		offsety = (img.getHeight())/2;
+		//offsetx = (img.getWidth())/2;
+		//offsety = (img.getHeight())/2;
 	}
 	
 	// 5) Sovrascrivere il metodo onDraw della bitmap per ridisegnare l'immagine
@@ -55,17 +55,23 @@ public class MyView extends View
 			{
 				if ((touchx > x & touchx < x + img.getWidth()) & (touchy > y & touchy < y + img.getHeight()))
 				{
+					offsetx=touchx-x;
+					offsety=touchy-y;
 					dragOn=true;
 				}
 				break;	
 			}
 			case MotionEvent.ACTION_MOVE:
 			{
-				x=touchx-offsetx;
-				y=touchy-offsety;
-				//x=touchx;
-				//y=touchy;
-				invalidate();
+				if(dragOn)
+				{
+					x=touchx-offsetx;
+					y=touchy-offsety;
+					//x=touchx;
+					//y=touchy;
+					invalidate();
+				}
+				
 				break;
 			}
 			case MotionEvent.ACTION_UP:
